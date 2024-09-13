@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,36 +22,48 @@ const DeliveryForm: FC<DeliveryFormProps> = ({
 }) => {
   const methods = useForm<IAddress>({
     resolver: yupResolver(deliverySchema),
-    defaultValues: {
-      ...data,
-    },
+    defaultValues: { ...data },
   });
   const { setFocus, handleSubmit } = methods;
 
   const onSubmit = (data: IAddress) => {
     handleNext(data);
   };
+
   useEffect(() => {
     setFocus("address1");
-  }, []);
+  }, [setFocus]);
 
   return (
-    <Stack>
+    <Box
+      component="section"
+      sx={{
+        p: 3,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 1,
+        boxShadow: 1,
+      }}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormProvider {...methods}>
-          <ControlledTextInput name="address1" label="Dirección" />
-          <ControlledTextInput name="address2" label="Dirección alternativa" />
-          <ControlledTextInput name="city" label="Ciudad" />
-          <ControlledTextInput name="state" label="Provincia" />
-          <ControlledTextInput name="zipCode" label="Código postal" />
+          <Stack spacing={3}>
+            <ControlledTextInput name="address1" label="Dirección" />
+            <ControlledTextInput name="address2" label="Dirección alternativa"/>
+            <ControlledTextInput name="city" label="Ciudad" />
+            <ControlledTextInput name="state" label="Provincia" />
+            <ControlledTextInput name="zipCode" label="Código postal"/>
+          </Stack>
         </FormProvider>
+        
+        <Stack direction="row" spacing={2} mt={4} justifyContent="center">
+          <StepperNavigation
+            activeStep={activeStep}
+            handleNext={handleSubmit(onSubmit)}
+            handleBack={handleBack}
+          />
+        </Stack>
       </form>
-      <StepperNavigation
-        activeStep={activeStep}
-        handleNext={handleSubmit(onSubmit)}
-        handleBack={handleBack}
-      />
-    </Stack>
+    </Box>
   );
 };
 

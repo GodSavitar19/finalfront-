@@ -19,20 +19,26 @@ declare module "@mui/material/Card" {
 
 export const theme = createTheme({
   typography: {
-    fontFamily: "Roboto Mono, sans-serif",
+    fontFamily: "Poppins, sans-serif",
     subtitle1: {
-      fontSize: 12,
+      fontSize: 14,
+      fontWeight: 600,
+      color: "#666",
     },
     body1: {
-      fontWeight: 500,
+      fontSize: 16,
+      fontWeight: 400,
+      color: "#333",
     },
     button: {
-      fontWeight: 900,
+      fontSize: 16,
+      fontWeight: 700,
+      textTransform: "uppercase",
     },
-
     h5: {
-      fontSize: 20,
-      fontWeight: 900,
+      fontSize: 24,
+      fontWeight: 700,
+      color: "#1a1a1a",
     },
   },
 
@@ -47,36 +53,44 @@ export const theme = createTheme({
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            border: "1px solid #000",
-            borderRadius: 0,
+            border: "2px solid #1e88e5", // Contorno azul
+            borderRadius: "12px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            "&:hover": {
+              transform: "scale(1.02)",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+            },
           },
         },
       ],
     },
+    
     /* ---- CARD MEDIA ---- */
     MuiCardMedia: {
       styleOverrides: {
         root: {
-          objectFit: "contain",
-          backgroundColor: "#000",
-          justifySelf: "flex-start",
-          alignSelf: "flex-start",
+          objectFit: "cover",
+          borderRadius: "12px 12px 0 0",
         },
       },
     },
+    
     /* ---- CARD CONTENT ---- */
     MuiCardContent: {
       styleOverrides: {
         root: {
-          borderTop: "2px solid #000",
+          padding: "16px",
+          borderTop: "2px solid #1e88e5", // Borde superior azul para el contenido de la tarjeta
         },
       },
     },
-    /* ---- CARD CONTENT ---- */
+    
+    /* ---- CARD ACTIONS ---- */
     MuiCardActions: {
       styleOverrides: {
         root: {
-          padding: 15,
+          padding: "16px",
           justifyContent: "space-between",
         },
       },
@@ -86,65 +100,86 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#000",
+          borderRadius: "8px",
+          fontWeight: 700,
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          transition: "background-color 0.3s, color 0.3s, transform 0.3s",
+          "&:hover": {
+            transform: "scale(1.05)",
+          },
         },
       },
-
       variants: [
         {
           props: { variant: "buyCard" },
           style: {
             textTransform: "none",
-            border: `2px solid #000`,
-            backgroundColor: "#b0d7ff",
-            borderRadius: 0,
-            fontSize: 15,
-            fontWeight: 700,
-            boxShadow: "2.5px 2.5px",
-            padding: "8px 15px",
+            border: `3px solid #1e88e5`, // Borde azul para el botón buyCard
+            backgroundColor: "#e3f2fd",
+            borderRadius: "12px",
+            fontSize: 18,
+            fontWeight: 800,
+            padding: "12px 24px",
+            color: "#1e88e5",
+            boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
+            "&:hover": {
+              backgroundColor: "#1e88e5",
+              color: "#fff",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+            },
           },
         },
         {
           props: { variant: "nextStepBuy" },
           style: {
-            textTransform: "capitalize",
-            border: `2px solid #000`,
-            backgroundColor: "#b0d7ff",
-            borderRadius: 0,
-            fontWeight: 700,
-            padding: "10px 20px",
+            textTransform: "none",
+            border: `3px solid #1e88e5`,
+            backgroundColor: "#e3f2fd",
+            borderRadius: "12px",
+            fontSize: 18,
+            fontWeight: 800,
+            padding: "12px 24px",
+            color: "#1e88e5",
+            boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
+            "&:hover": {
+              backgroundColor: "#1e88e5",
+              color: "#fff",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+            },
           },
         },
         {
           props: { variant: "finalStepBuy" },
           style: {
             textTransform: "capitalize",
-            border: `2px solid #000`,
-            backgroundColor: "#ffa236",
-            borderRadius: 0,
-            fontWeight: 700,
-            padding: "10px 30px",
+            border: `2px solid #1e88e5`,
+            backgroundColor: "#ff8c00",
+            borderRadius: "8px",
+            fontSize: 16,
+            padding: "12px 24px",
+            color: "#fff",
           },
         },
         {
           props: { variant: "buyCardDisabled" },
           style: {
             textTransform: "none",
-            border: `2px solid #bebebe`,
-            backgroundColor: "#bebebe",
-            borderRadius: 0,
-            fontSize: 15,
-            fontWeight: 700,
-            padding: "8px 15px",
+            border: `2px solid #dcdcdc`,
+            backgroundColor: "#e0e0e0",
+            borderRadius: "8px",
+            fontSize: 16,
+            padding: "10px 20px",
+            color: "#a0a0a0",
           },
         },
         {
           props: { variant: "seeMore" },
           style: {
-            borderBottom: `1px solid #000`,
+            borderBottom: `2px solid #1e88e5`,
             borderRadius: 0,
-            fontSize: 13,
-            padding: "0px",
+            fontSize: 14,
+            color: "#1e88e5",
+            padding: "8px 0",
           },
         },
         {
@@ -154,11 +189,12 @@ export const theme = createTheme({
             textTransform: "none",
             fontWeight: "normal",
             textAlign: "left",
-            fontSize: "13px",
-            padding: "4px 5px",
+            fontSize: "14px",
+            padding: "6px 8px",
+            color: "#1e88e5",
             "&:hover": {
-              backgroundColor: "#ddedff",
-              color: "#3c52b2",
+              backgroundColor: "#e3f2fd",
+              color: "#0d47a1",
             },
           },
         },

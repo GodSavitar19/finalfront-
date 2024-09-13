@@ -42,24 +42,34 @@ const PaymentForm: FC<PaymentFormProps> = ({
   const { number, nameOnCard, expDate, cvc } = watch();
   useEffect(() => {
     setPayment({
-      number: number,
-      nameOnCard: nameOnCard,
-      expDate: expDate,
-      cvc: cvc,
+      number,
+      nameOnCard,
+      expDate,
+      cvc,
     });
   }, [number, nameOnCard, expDate, cvc]);
 
   useEffect(() => {
     setFocus("number");
-  }, []);
+  }, [setFocus]);
 
   const onSubmit = (data: ICard) => {
     handleNext(data);
   };
 
   return (
-    <Box id="PaymentForm">
-      <Box paddingBottom={5}>
+    <Box
+      id="PaymentForm"
+      sx={{
+        p: 3,
+        backgroundColor: '#f5f5f5',
+        borderRadius: 1,
+        boxShadow: 1,
+        maxWidth: 600,
+        margin: '0 auto',
+      }}
+    >
+      <Box mb={4} textAlign="center">
         <Cards
           cvc={payment.cvc}
           expiry={payment.expDate}
@@ -70,39 +80,47 @@ const PaymentForm: FC<PaymentFormProps> = ({
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormProvider {...methods}>
-          <ControlledTextInput
-            name="number"
-            regex={regexNumber}
-            label="Número de la tarjeta"
-            maxLength={16}
-          />
-          <ControlledTextInput
-            name="nameOnCard"
-            label="Nombre como figura en la tarjeta"
-          />
-          <Stack direction="row" spacing={5}>
+          <Stack spacing={3}>
             <ControlledTextInput
-              name="expDate"
-              label="Fecha expiración"
+              name="number"
               regex={regexNumber}
-              maxLength={4}
+              label="Número de la tarjeta"
+              maxLength={16}
+              
             />
             <ControlledTextInput
-              type="password"
-              regex={regexNumber}
-              name="cvc"
-              label="CVC"
-              maxLength={3}
+              name="nameOnCard"
+              label="Nombre como figura en la tarjeta"
+              
             />
+            <Stack direction="row" spacing={3}>
+              <ControlledTextInput
+                name="expDate"
+                label="Fecha expiración"
+                regex={regexNumber}
+                maxLength={4}
+                
+              />
+              <ControlledTextInput
+                type="password"
+                name="cvc"
+                label="CVC"
+                regex={regexNumber}
+                maxLength={3}
+              
+              />
+            </Stack>
           </Stack>
         </FormProvider>
+        
+        <Box mt={4}>
+          <StepperNavigation
+            activeStep={activeStep}
+            handleNext={handleSubmit(onSubmit)}
+            handleBack={handleBack}
+          />
+        </Box>
       </form>
-
-      <StepperNavigation
-        activeStep={activeStep}
-        handleNext={handleSubmit(onSubmit)}
-        handleBack={handleBack}
-      />
     </Box>
   );
 };

@@ -1,23 +1,30 @@
 import * as React from "react";
 import { FC, PropsWithChildren } from "react";
-import { Stack } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Stack, Box } from "@mui/material";
 import GeneralHeader from "dh-marvel/components/layouts/header/general-header.component";
 import GeneralFooter from "dh-marvel/components/layouts/footer/general-footer.component";
 
-const LayoutCheckout: FC<PropsWithChildren> = ({
-  children,
-}: PropsWithChildren) => {
+const LayoutCheckout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <>
-      <Stack direction={"column"} height={"100%"}>
-        <GeneralHeader variant={"simple"} />
-        <Box display={"flex"} flexGrow={1} justifyContent={"center"}>
-          {children}
-        </Box>
-        <GeneralFooter />
-      </Stack>
-    </>
+    <Stack
+      direction="column"
+      minHeight="100vh"
+      spacing={2}
+    >
+      <GeneralHeader variant="simple" />
+      <Box
+        component="main"
+        flexGrow={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        px={2}
+      >
+        {children}
+      </Box>
+      <GeneralFooter />
+    </Stack>
   );
 };
+
 export default LayoutCheckout;

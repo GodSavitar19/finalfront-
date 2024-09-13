@@ -13,53 +13,49 @@ interface Props {
 const AccordionComic: FC<Props> = ({ comic }) => {
   return (
     <Box>
-      <AccordionCollapsible title={"Descripción"}>
-        <Typography variant="body2" gutterBottom>
-          {comic.description !== null && comic.description !== ""
-            ? comic.description
-            : "Sin descripción disponible."}
+      <AccordionCollapsible title="Descripción">
+        <Typography variant="body1" gutterBottom>
+          {comic.description ? comic.description : "Sin descripción disponible."}
         </Typography>
       </AccordionCollapsible>
-      <AccordionCollapsible title={"Personajes"}>
+      <AccordionCollapsible title="Personajes">
         <Box>
           {comic.characters.items.length ? (
-            comic.characters.items.map((character) => {
-              return (
-                <NextLink
-                  href={`/characters/${getIdfromURI(character.resourceURI)}`}
-                  key={character.name}
-                >
-                  <Button fullWidth variant="link" size="small">
-                    {character.name}
-                  </Button>
-                </NextLink>
-              );
-            })
+            comic.characters.items.map((character) => (
+              <NextLink
+                href={`/characters/${getIdfromURI(character.resourceURI)}`}
+                key={character.name}
+              >
+                <Button variant="link" size="small" sx={{ mb: 1 }}>
+                  {character.name}
+                </Button>
+              </NextLink>
+            ))
           ) : (
-            <Typography variant="body2">
+            <Typography variant="body1">
               Sin listado de personajes disponible.
             </Typography>
           )}
         </Box>
       </AccordionCollapsible>
-      <AccordionCollapsible title={"Creadores"}>
+      <AccordionCollapsible title="Creadores">
         <Box>
           {comic.creators.items.length ? (
-            comic.creators.items.map((creator) => {
-              return (
-                <Typography
-                  sx={{
-                    fontSize: "13px",
-                    padding: "4px 5px",
-                  }}
-                  key={creator.name}
-                >
-                  {creator.name} - {creator.role}
-                </Typography>
-              );
-            })
+            comic.creators.items.map((creator) => (
+              <Typography
+                key={creator.name}
+                variant="body1"
+                sx={{
+                  fontSize: "13px",
+                  padding: "4px 5px",
+                  color: "#333",
+                }}
+              >
+                {creator.name} - {creator.role}
+              </Typography>
+            ))
           ) : (
-            <Typography variant="body2">
+            <Typography variant="body1">
               Sin listado de creadores disponible.
             </Typography>
           )}

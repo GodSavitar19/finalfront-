@@ -3,19 +3,21 @@ export const errorMesages = {
     required: "Complete todos los campos.",
   },
   number: {
-    required: "El número es requerido.",
-    min: "Ingrese 16 números.",
+    required: "Ingrese el número.",
+    min: "Complete el campo.",
+    
   },
 
   nameOnCard: {
-    required: "El nombre es requerido.",
+    required: "Ingrese el nombre.",
+    min: "Complete el campo.",
   },
   expDate: {
-    required: "La fecha de vencimiento es requerida.",
-    min: "Ingrese 4 números.",
+    required: "Ingrese fecha de vencimiento.",
+    min: "Complete el campo.",
   },
   cvc: {
-    required: "El código CVC es requerido.",
-    min: "Ingrese 3 números.",
+    required: "Ingrese el código CVC es.",
+    min: "Complete el campo.",
   },
 };
